@@ -1,29 +1,17 @@
-body {
+body,
+html {
   margin: 0;
   padding: 0;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   background-color: mediumvioletred;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
+
 h1,
 h2 {
   margin: 0;
   padding: 0;
-}
-
-.flex {
-  display: flex;
-  flex-direction: row;
-}
-
-.box {
-  /* display: flex; */
-  /* flex-direction: column; */
-  padding: 20px;
-  color: white;
-  /* max-height: calc(); */
-  /* overflow: auto; */
 }
 
 .bg-indigo {
@@ -34,18 +22,7 @@ h2 {
   background-color: purple;
 }
 
-.form {
-  width: 97.5%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  overflow: auto;
-  height: 100vh;
-}
-
 .filter {
-  position: relative;
   width: 50%;
   padding: 0;
 }
@@ -56,11 +33,9 @@ h2 {
 }
 
 .form-row {
+  position: relative;
   margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  align-items: flex-end;
+  width: 90%;
 }
 
 .form-row input,
@@ -70,9 +45,10 @@ select {
   box-sizing: border-box;
   width: 100%;
   border-radius: 5px;
-  padding: 15px;
+  padding: 9px;
   border: 2px solid mediumvioletred;
   font-size: 1.1em;
+  box-sizing: auto;
 }
 
 .form-row select option {
@@ -86,27 +62,15 @@ select {
   width: 100%;
 }
 
-.btns-option,
 .btn-add {
   position: fixed;
-  bottom: 20px;
-  right: 50px;
+  bottom: 0;
+  left: 0;
   width: auto;
-}
-
-.btns-option button {
-  padding: 18px 10px;
-  margin-left: 3px;
-  border-radius: 50%;
-  border: 2px solid mediumvioletred;
-  color: mediumvioletred;
-  background-color: transparent;
-  cursor: pointer;
 }
 
 .btn-add button {
   padding: 19px 15px;
-  margin-left: 5px;
   border-radius: 50%;
   border: 2px solid indigo;
   color: mediumvioletred;
@@ -115,58 +79,95 @@ select {
 }
 
 .list {
+  padding: 20px;
+  color: white;
   width: 100%;
   background-color: mediumvioletred;
 }
 
 @media (max-width: 1024px) {
-  .flex {
-    flex-direction: column;
-  }
-  .form,
-  .list {
-    width: 90%;
-  }
   .filter {
     width: 100%;
+  }
+  .form-row {
+    width: 90%;
+  }
+
+  table td,
+  table th {
+    font-size: 0.8em;
+  }
+
+  tbody td {
+    max-width: 250px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }
 
 table {
+  font-size: 0.9em;
+  width: calc(100vw - 3em);
+}
+
+table,
+tr td {
   border-collapse: collapse;
-  text-align: left;
+  border: 1px solid transparent;
+}
+tbody {
+  display: block;
+  height: calc(100vh - 200px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+thead,
+tbody tr {
+  display: table;
   width: 100%;
+  table-layout: fixed;
+}
+
+tbody td {
+  text-align: left;
+  border-top: 1px solid indigo;
+  border-right: 1px solid indigo;
+  padding: 5px;
+}
+
+tbody td {
+  text-align: left;
+  border-top: 1px solid indigo;
+  border-right: 1px solid indigo;
+  padding: 5px;
+}
+
+tbody td:nth-child(1) {
+  border-left: 1px solid indigo;
+  text-align: left;
+  cursor: pointer;
+}
+
+tbody td:nth-child(4) {
+  border-right: 1px solid indigo;
+  text-align: center;
+}
+
+tbody tr:last-child td {
+  border-bottom: 1px solid indigo;
 }
 
 thead th {
+  text-align: center;
+
+  padding: 5px;
   background-color: indigo;
 }
-thead th:nth-child(1) {
-  width: 70%;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-thead th:nth-child(2) {
-  width: 10%;
-}
-table th:nth-child(3) {
-  width: 20%;
-}
 
-table td,
-table th {
-  padding: 0.75rem;
-  vertical-align: top;
-  border-top: 1px solid indigo;
-}
-
-tbody tr td:nth-child(1) {
-  cursor: pointer;
-}
 tbody button {
   padding: 8px 8px;
-  /* margin-left:   3px; */
   border-radius: 5px;
   border: 2px solid indigo;
   color: white;
@@ -176,9 +177,56 @@ tbody button {
 
 .clear-filter {
   position: absolute;
-  bottom: 3px;
+  bottom: -2px;
   right: 10px;
   color: indigo;
   font-size: 3em;
   cursor: pointer;
+}
+
+.modal {
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  color: #fff;
+  z-index: 100;
+}
+.modal.open {
+  display: block;
+}
+
+.modal__header {
+  height: 250px;
+  margin: 16px 10px;
+}
+
+.modal__footer {
+  height: 50px;
+}
+.modal__content,
+.modal__footer {
+  position: absolute;
+  width: 100%;
+}
+.modal__content {
+  bottom: 50px;
+  top: 240px;
+  overflow-y: auto;
+  /* margin: 0 10px; */
+}
+.modal__footer {
+  bottom: 0;
+  left: 10px;
+}
+
+.modal__footer button {
+  padding: 8px 8px;
+  border-radius: 5px;
+  border: 2px solid mediumvioletred;
+  color: white;
+  background-color: mediumvioletred;
+  cursor: pointer;
+  margin-right: 5px;
 }

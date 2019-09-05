@@ -177,6 +177,8 @@ class App extends React.Component {
   };
 
   handledSubmitSave = e => {
+    console.log("save");
+
     e.preventDefault();
     this.save();
   };
@@ -294,69 +296,74 @@ class App extends React.Component {
       );
     });
 
-    let form = undefined;
+    let modal = undefined;
     if (this.state.swForm) {
       const bg =
         this.state.titleForm === "New Block Code" ? "bg-indigo" : "bg-purple";
-      form = (
-        <form
-          className={`box form ${bg}`}
-          onSubmit={this.handledSubmitSave}
-          autoComplete="off"
-        >
-          <h2>{this.state.titleForm}</h2>
-          <br />
-          <div className="form-row">
-            <label htmlFor="description">Description</label>
-            <input
-              type="text"
-              name="description"
-              id="description"
-              placeholder="Description"
-              value={this.state.codeSelected.description}
-              onChange={this.handledChange}
-            />
+      modal = (
+        <div className={`modal ${bg}`}>
+          <div className="modal__header">
+            <h2>{this.state.titleForm}</h2>
+            <form onSubmit={this.handledSubmitSave} autoComplete="off">
+              <div className="form-row">
+                <label htmlFor="description">Description</label>
+                <input
+                  type="text"
+                  name="description"
+                  id="description"
+                  placeholder="Description"
+                  value={this.state.codeSelected.description}
+                  onChange={this.handledChange}
+                />
+              </div>
+              <div className="form-row">
+                <label htmlFor="languaje">Languaje</label>
+                <select
+                  type="text"
+                  name="languaje"
+                  id="languaje"
+                  placeholder="Languaje"
+                  value={this.state.codeSelected.languaje}
+                  onChange={this.handledChange}
+                >
+                  <option value=""></option>
+                  <option value="javascript">Javascript</option>
+                  <option value="jsx">jsx</option>
+                  <option value="tsx">tsx</option>
+                  <option value="typescript">typescript</option>
+                  <option value="coffeescript">coffeescript</option>
+                  <option value="json">json</option>
+                  <option value="html">html</option>
+                  <option value="css">css</option>
+                  <option value="sass">sass</option>
+                  <option value="less">less</option>
+                  <option value="php">php</option>
+                  <option value="java">java</option>
+                  <option value="visual-basic">visual-basic</option>
+                  <option value="python">python</option>
+                  <option value="ruby">ruby</option>
+                </select>
+              </div>
+              <div className="form-row">
+                <label htmlFor="code">
+                  Code (ctrl+shift+v, paste whit format)
+                </label>
+              </div>
+            </form>
           </div>
-          <div className="form-row">
-            <label htmlFor="languaje">Languaje</label>
-            <select
-              type="text"
-              name="languaje"
-              id="languaje"
-              placeholder="Languaje"
-              value={this.state.codeSelected.languaje}
-              onChange={this.handledChange}
-            >
-              <option value=""></option>
-              <option value="javascript">Javascript</option>
-              <option value="jsx">jsx</option>
-              <option value="tsx">tsx</option>
-              <option value="typescript">typescript</option>
-              <option value="coffeescript">coffeescript</option>
-              <option value="json">json</option>
-              <option value="html">html</option>
-              <option value="css">css</option>
-              <option value="sass">sass</option>
-              <option value="less">less</option>
-              <option value="php">php</option>
-              <option value="java">java</option>
-              <option value="visual-basic">visual-basic</option>
-              <option value="python">python</option>
-              <option value="ruby">ruby</option>
-            </select>
-          </div>
-          <div className="form-row">
-            <label htmlFor="code">Code (ctrl+shift+v, paste whit format)</label>
+          <div className="modal__content">
             <EditorExample
               codeSelected={this.state.codeSelected}
               valueChange={code => this.valueChange(code)}
             />
           </div>
-          <div className="btns-option">
+          <div className="modal__footer">
             <button type="button" onClick={this.handledClickClear}>
               Clear
             </button>
-            <button type="submit">Save</button>
+            <button type="submit" onClick={this.handledSubmitSave}>
+              Save
+            </button>
             <button
               type="button"
               onClick={() => {
@@ -366,57 +373,53 @@ class App extends React.Component {
               Close
             </button>
           </div>
-        </form>
-      );
-    } else {
-      form = (
-        <div className="btn-add">
-          <button type="button" onClick={this.handledClickAdd}>
-            Add
-          </button>
         </div>
       );
     }
 
     return (
       <React.Fragment>
-        {form}
-        <div className="flex">
-          <div className="box list">
-            <h2>Block Codes</h2>
-            <br />
-            <form className="box filter" autoComplete="off">
-              <div className="form-row">
-                <label htmlFor="filter">Filter</label>
-                <input
-                  type="text"
-                  name="filter"
-                  id="filter"
-                  placeholder="Filter"
-                  value={this.state.filterText}
-                  onChange={this.handledFilterChange}
-                  onKeyDown={this.handledKeyDown}
-                />
-              </div>
+        {modal}
+
+        <div className="list">
+          <h2>Block Codes</h2>
+          <br />
+          <form className="filter" autoComplete="off">
+            <div className="form-row">
+              {/* <label htmlFor="filter">Filter</label> */}
+              <input
+                type="text"
+                name="filter"
+                id="filter"
+                placeholder="Filter"
+                value={this.state.filterText}
+                onChange={this.handledFilterChange}
+                onKeyDown={this.handledKeyDown}
+              />
               <span
                 className="clear-filter"
                 onClick={this.handledClickFilerClear}
               >
                 &times;
               </span>
-            </form>
-            <br />
-            <table>
-              <thead>
-                <tr>
-                  <th>Description</th>
-                  <th>Languaje</th>
-                  <th>Update</th>
-                  <th>Options</th>
-                </tr>
-              </thead>
-              <tbody>{rows}</tbody>
-            </table>
+            </div>
+          </form>
+          <br />
+          <table>
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Languaje</th>
+                <th>Update</th>
+                <th>Options</th>
+              </tr>
+            </thead>
+            <tbody>{rows}</tbody>
+          </table>
+          <div className="btn-add">
+            <button type="button" onClick={this.handledClickAdd}>
+              Add
+            </button>
           </div>
         </div>
       </React.Fragment>

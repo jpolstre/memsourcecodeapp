@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/memsourcecodeapp/static/css/main.b46c89da.chunk.css",
+    "main.js": "/memsourcecodeapp/static/js/main.8f75bf91.chunk.js",
+    "main.js.map": "/memsourcecodeapp/static/js/main.8f75bf91.chunk.js.map",
+    "runtime~main.js": "/memsourcecodeapp/static/js/runtime~main.23edf659.js",
+    "runtime~main.js.map": "/memsourcecodeapp/static/js/runtime~main.23edf659.js.map",
+    "static/js/2.41c6199a.chunk.js": "/memsourcecodeapp/static/js/2.41c6199a.chunk.js",
+    "static/js/2.41c6199a.chunk.js.map": "/memsourcecodeapp/static/js/2.41c6199a.chunk.js.map",
+    "index.html": "/memsourcecodeapp/index.html",
+    "precache-manifest.c750ed5afe6a74c7e5f2642f3a8d3c4f.js": "/memsourcecodeapp/precache-manifest.c750ed5afe6a74c7e5f2642f3a8d3c4f.js",
+    "service-worker.js": "/memsourcecodeapp/service-worker.js",
+    "static/css/main.b46c89da.chunk.css.map": "/memsourcecodeapp/static/css/main.b46c89da.chunk.css.map"
+  }
+}

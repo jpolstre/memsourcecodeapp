@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9752014eb313e1157d5708f014beec85",
+    "revision": "36050b5e9fc7a3ece5cde3b50e7e4339",
     "url": "/memsourcecodeapp/index.html"
   },
   {
-    "revision": "5e5ca980fbad76762f80",
-    "url": "/memsourcecodeapp/static/css/main.6dc5c7fd.chunk.css"
+    "revision": "afcb17d6aa2efc27adf4",
+    "url": "/memsourcecodeapp/static/css/main.848db100.chunk.css"
   },
   {
     "revision": "dcda302758645403256b",
     "url": "/memsourcecodeapp/static/js/2.41c6199a.chunk.js"
   },
   {
-    "revision": "5e5ca980fbad76762f80",
-    "url": "/memsourcecodeapp/static/js/main.b482f87c.chunk.js"
+    "revision": "afcb17d6aa2efc27adf4",
+    "url": "/memsourcecodeapp/static/js/main.f579772e.chunk.js"
   },
   {
     "revision": "136c01cc4c0ac232a537",
